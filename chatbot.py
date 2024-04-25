@@ -103,6 +103,15 @@ import random
 random_greeting = random.choice(bot_greetings)
 random_farewell = random.choice(bot_farewell)
 
+
+# Clearing Chat History 
+def clearHistory():
+    with open('history.txt', 'w') as file:
+        pass  
+
+    with open('reply.txt', 'w') as file:
+        pass
+
 if user_message.lower() in human_exits:
     chats.write(f"\nchatbot:{random_farewell}!")
     user_hist.append(user_message)
@@ -152,3 +161,7 @@ history = pd.DataFrame({'User Input': data1, 'Bot Reply' : data2})
 st.subheader('Chat History', divider = True)
 st.dataframe(history, use_container_width = True)
 #st.sidebar.write(data2)
+
+
+if st.button('Clear Chat History'):
+    clearHistory()
